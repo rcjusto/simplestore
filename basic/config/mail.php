@@ -3,8 +3,8 @@
 return [
     'class' => 'Swift_SmtpTransport',
     'host' => 'smtp.gmail.com',
-    'username' => 'aggua.inc@gmail.com',
-    'password' => 'AA09inc09',
+    'username' => '********',
+    'password' => '********',
     'port' => '465',
     'encryption' => 'ssl',
 ];

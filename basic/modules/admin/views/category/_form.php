@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Category;
+use dosamigos\tinymce\TinyMce;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -49,7 +50,21 @@ foreach($category_list as $cat) {
             </div>
             <div class="col-lg-12">
                 <label>Description</label>
-                <?= Html::textarea("content[$lang]", $model->getContent($lang), ['class'=>'form-control'])?>
+                <?php echo TinyMce::widget([
+                    'name' => "content[$lang]",
+                    'value' => $model->getContent($lang),
+                    'options' => ['rows' => 12],
+                    'language' => 'es',
+                    'clientOptions' => [
+                        'content_css' => '/css/bootstrap.min.css,/css/site.css',
+                        'plugins' => [
+                            "advlist autolink lists link image charmap print preview anchor", "searchreplace visualblocks code fullscreen",
+                            "insertdatetime media table contextmenu paste",
+                            "textcolor jbimages"
+                        ],
+                        'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | forecolor"
+                    ]
+                ]) ?>
             </div>
         </div>
     <?php } ?>

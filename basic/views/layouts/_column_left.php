@@ -11,5 +11,6 @@
     <h4><?=Yii::t('app','Categories')?></h4>
     <?=$this->render('//parts/_categories', []); ?>
 </div>
+<div><?= $this->render('//parts/_banner', ['zone'=>'home_left'])?></div>
 <div class="hidden-sm hidden-xs"><?=$this->render('//parts/_block', ['id'=>'home_left']); ?></div>
 </div>

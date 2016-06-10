@@ -20,8 +20,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-dynagrid": "@dev",
-        "kartik-v/yii2-mpdf": "@dev",
-        "2amigos/yii2-tinymce-widget": "*"
+        "kartik-v/yii2-mpdf": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

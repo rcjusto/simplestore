@@ -26,6 +26,9 @@ use yii\widgets\ActiveForm;
         <div class="col-lg-6">
             <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
         </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'target')->dropDownList(\app\models\Banner::$targets) ?>
+        </div>
     </div>
 
     <?php foreach (\app\models\Property::getLanguages() as $lang) { ?>

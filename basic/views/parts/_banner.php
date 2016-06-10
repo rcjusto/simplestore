@@ -18,7 +18,7 @@ if (count($list)>1) {
     <div class="carousel-inner" role="listbox">
         <?php foreach($list as $index => $banner) { ?>
         <div class="item <?= $index==0 ? 'active' : ''?>">
-            <a href="<?=$banner->link?>" target="_blank"><img src="<?= $banner->getImage()?>"></a>
+            <a href="<?=$banner->link?>" target="<?= $banner->getTarget()?>"><img src="<?= $banner->getImage()?>"></a>
         </div>
         <?php } ?>
     </div>
@@ -37,7 +37,7 @@ if (count($list)>1) {
 } else if (count($list)==1) {
     $banner = $list[0];
 ?>
-    <a href="<?=$banner->link?>" target="_blank">
+    <a href="<?=$banner->link?>" target="<?= $banner->getTarget()?>">
         <img src="<?=$banner->getImage()?>" class="img-responsive" >
     </a>
 <?php } ?>

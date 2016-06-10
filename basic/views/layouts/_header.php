@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use yii\widgets\Menu;
 
 $languages = [
-    'es' => utf8_encode('Español'),
+    'es' => utf8_encode('Espa&ntilde;ol'),
     'en' => utf8_encode('English'),
 ];
 
@@ -14,6 +14,7 @@ $topLinks = [
     ['label' => Yii::t('app', 'Terms and conditions'), 'url' => ['site/page', 'code' => 'terminos-y-condiciones']],
     ['label' => Yii::t('app', 'Payment methods'), 'url' => ['site/page', 'code' => 'metodos-de-pago']],
     ['label' => Yii::t('app', 'Contact Us'), 'url' => ['site/contact']],
+    ['label' => Yii::t('app', 'How to buy'), 'url' => ['site/page', 'code' => 'how-to-buy']],
 ];
 
 ?>

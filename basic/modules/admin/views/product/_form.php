@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\tinymce\TinyMce;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -74,11 +75,39 @@ $providers = ArrayHelper::map(\app\models\Provider::find()->orderBy(['name' => S
             </div>
             <div class="col-lg-12">
                 <label>Description</label>
-                <?= Html::textarea("description[$lang]", $model->getDescription($lang), ['class'=>'form-control'])?>
+                <?php echo TinyMce::widget([
+                    'name' => "description[$lang]",
+                    'value' => $model->getDescription($lang),
+                    'options' => ['rows' => 12],
+                    'language' => 'es',
+                    'clientOptions' => [
+                        'content_css' => '/css/bootstrap.min.css,/css/site.css',
+                        'plugins' => [
+                            "advlist autolink lists link image charmap print preview anchor", "searchreplace visualblocks code fullscreen",
+                            "insertdatetime media table contextmenu paste",
+                            "textcolor jbimages"
+                        ],
+                        'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | forecolor"
+                    ]
+                ]) ?>
             </div>
             <div class="col-lg-12">
                 <label>Aditional Information</label>
-                <?= Html::textarea("information[$lang]", $model->getInformation($lang), ['class'=>'form-control'])?>
+                <?php echo TinyMce::widget([
+                    'name' => "information[$lang]",
+                    'value' => $model->getInformation($lang),
+                    'options' => ['rows' => 12],
+                    'language' => 'es',
+                    'clientOptions' => [
+                        'content_css' => '/css/bootstrap.min.css,/css/site.css',
+                        'plugins' => [
+                            "advlist autolink lists link image charmap print preview anchor", "searchreplace visualblocks code fullscreen",
+                            "insertdatetime media table contextmenu paste",
+                            "textcolor jbimages"
+                        ],
+                        'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | forecolor"
+                    ]
+                ]) ?>
             </div>
         </div>
     <?php } ?>

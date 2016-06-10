@@ -36,7 +36,7 @@ class DefaultController extends AdminBaseController
         $this->layout = 'login';
         $model = new AdminLoginForm();
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post()) && !is_null($admin = $model->loginAdmin())) {
-            Yii::$app->session->set('admin', $admin);
+            Yii::$app->session->set(AdminAccessControl::IDENTITY_SESSION, $admin);
             $this->sendIdentityCookie($admin->email, $model->rememberMe ? 3600*24*30 : 0);
             return $this->redirect(['/admin/default/index']);
         }
@@ -44,7 +44,8 @@ class DefaultController extends AdminBaseController
     }
 
     public function actionLogout() {
-        Yii::$app->session->remove('admin');
+        Yii::$app->session->remove(AdminAccessControl::IDENTITY_SESSION);
+        Yii::$app->getResponse()->getCookies()->remove(AdminAccessControl::IDENTITY_COOKIE);
         return $this->redirect(['/admin/default/index']);
     }
 

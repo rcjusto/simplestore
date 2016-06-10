@@ -26,7 +26,7 @@ class AdminBaseController extends Controller
     }
 
     public function getAdmin() {
-        return Yii::$app->session->get('admin');
+        return Yii::$app->session->get(AdminAccessControl::IDENTITY_SESSION);
     }
 
 

@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\tinymce\TinyMce;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -22,7 +23,7 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div class="col-lg-4">
-            <?= $form->field($model, 'active')->dropDownList([0=>'No',1=>'Yes']) ?>
+            <?= $form->field($model, 'active')->dropDownList([0 => 'No', 1 => 'Yes']) ?>
         </div>
     </div>
 
@@ -35,22 +36,21 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="col-lg-12">
                 <label>Content</label>
-                <?= Html::textarea("content[$lang]", $model->getContent($lang), ['class' => 'form-control']) ?>
-                <?php /* \dosamigos\tinymce\TinyMce::widget([
+                <?php echo TinyMce::widget([
                     'name' => "content[$lang]",
                     'value' => $model->getContent($lang),
                     'options' => ['rows' => 12],
                     'language' => 'es',
                     'clientOptions' => [
-                        'content_css' => '/assets/c6701d56/css/bootstrap.css',
+                        'content_css' => '/css/bootstrap.min.css,/css/site.css',
                         'plugins' => [
-                            "advlist autolink lists link charmap print preview anchor", "searchreplace visualblocks code fullscreen",
+                            "advlist autolink lists link image charmap print preview anchor", "searchreplace visualblocks code fullscreen",
                             "insertdatetime media table contextmenu paste",
-                            "textcolor"
+                            "textcolor jbimages"
                         ],
-                        'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor"
+                        'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | forecolor"
                     ]
-                ]) */ ?>
+                ]) ?>
             </div>
         </div>
     <?php } ?>

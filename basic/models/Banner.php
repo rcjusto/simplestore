@@ -11,6 +11,7 @@ use Yii;
  * @property string $zone
  * @property integer $active
  * @property string $link
+ * @property string $target
  * @property integer $position
  */
 class Banner extends \yii\db\ActiveRecord
@@ -31,7 +32,7 @@ class Banner extends \yii\db\ActiveRecord
         return [
             [['zone'], 'required'],
             [['active','position'], 'integer'],
-            [['zone'], 'string', 'max' => 45],
+            [['zone','target'], 'string', 'max' => 45],
             [['link'], 'string', 'max' => 512],
         ];
     }
@@ -46,6 +47,7 @@ class Banner extends \yii\db\ActiveRecord
             'zone' => Yii::t('app', 'Zone'),
             'active' => Yii::t('app', 'Active'),
             'link' => Yii::t('app', 'Link'),
+            'target' => Yii::t('app', 'Target'),
             'position' => Yii::t('app', 'Position'),
         ];
     }
@@ -56,5 +58,14 @@ class Banner extends \yii\db\ActiveRecord
         }
         return ImageManager::removeFolderStr(ImageManager::getBannerImage($this->id, $lang));
     }
+
+    public function getTarget() {
+        return array_key_exists($this->target, self::$targets) ? $this->target : '_blank';
+    }
+
+    public static $targets = [
+        '_blank' => 'Ventana Nueva',
+        '_self' => 'Misma Ventana',
+    ];
 
 }

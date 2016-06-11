@@ -24,6 +24,8 @@ $message_info =  Yii::$app->session->getFlash('products_info');
             <h1><?= Html::encode($this->title) ?></h1>
         </div>
         <div class="col-xs-6" style="text-align: right;margin-top: 25px;">
+            <?= Html::a(Yii::t('app', 'Import'), ['import'], ['class' => 'btn btn-default']) ?>
+            <?= Html::a(Yii::t('app', 'Export'), ['export'], ['class' => 'btn btn-default']) ?>
             <?= Html::a(Yii::t('app', 'Create Product'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
     </div>

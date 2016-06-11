@@ -29,7 +29,7 @@ use yii\helpers\Url;
  * @property Provider $provider
  * @property ProductLang[] $productLangs
  */
-class Product extends \yii\db\ActiveRecord
+class Product extends BaseModel
 {
     /**
      * @inheritdoc
@@ -132,6 +132,11 @@ class Product extends \yii\db\ActiveRecord
         return $this->hasMany(ProductLang::className(), ['product_id' => 'id']);
     }
 
+    /**
+     * @param $lang
+     * @param bool $create_it
+     * @return ProductLang|null|static
+     */
     public function getProductLang($lang, $create_it = false)
     {
         $model = !empty($this->id) ? ProductLang::findOne(['product_id'=>$this->id, 'lang'=>$lang]) : null;
@@ -219,4 +224,30 @@ class Product extends \yii\db\ActiveRecord
         ];
     }
 
+    public function to_array() {
+        $arr = $this->getAttributes();
+        foreach (Property::getLanguages() as $lang) {
+            $pLang = $this->getProductLang($lang);
+            $arr[$lang . ':name'] = $pLang ? $pLang->name : '';
+            $arr[$lang . ':description'] = $pLang ? $pLang->description : '';
+            $arr[$lang . ':information'] = $pLang ? $pLang->information : '';
+        }
+        return $arr;
+    }
+
+    public function from_array($arr) {
+        $this->setAttributes($arr);
+        if ($this->save()) {
+            foreach (Property::getLanguages() as $lang) {
+                $pLang = $this->getProductLang($lang, true);
+                if (array_key_exists($lang . ':name', $arr)) $pLang->name = $arr[$lang . ':name'];
+                if (array_key_exists($lang . ':description', $arr)) $pLang->description  = $arr[$lang . ':description'];
+                if (array_key_exists($lang . ':information', $arr)) $pLang->information = $arr[$lang . ':information'];
+                $pLang->save();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

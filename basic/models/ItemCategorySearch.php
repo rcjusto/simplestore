@@ -37,7 +37,7 @@ class ItemCategorySearch extends Model
     public function search($params)
     {
         $this->scenario = '';
-        $query = Product::find();
+        $query = Product::find()->where(['active'=>1]);
 
         $this->scenario = 'default';
         $this->load($params, '');

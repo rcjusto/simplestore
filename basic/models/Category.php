@@ -18,7 +18,7 @@ use yii\helpers\Url;
  * @property CategoryLang[] $categoryLangs
  * @property Product[] $products
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends BaseModel
 {
     /**
      * @inheritdoc

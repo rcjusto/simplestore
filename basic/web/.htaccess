@@ -1,11 +1,5 @@
 RewriteEngine on
 
-RewriteCond %{HTTP_HOST} ^www\.recibiloalla\.com [NC]
-RewriteRule ^(.*)$ https://recibiloalla.com/$1 [L,R=301]
-
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,NE,R=301]
-
 # If a directory or a file exists, use the request directly
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

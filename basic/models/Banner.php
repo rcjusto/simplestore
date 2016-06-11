@@ -14,7 +14,7 @@ use Yii;
  * @property string $target
  * @property integer $position
  */
-class Banner extends \yii\db\ActiveRecord
+class Banner extends BaseModel
 {
     /**
      * @inheritdoc
